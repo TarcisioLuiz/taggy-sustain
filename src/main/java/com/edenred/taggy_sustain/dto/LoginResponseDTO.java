@@ -10,7 +10,4 @@ public class LoginResponseDTO {
         this.mensagem = mensagem;
     }
 
-    public String getMensagem(){
-        return mensagem;
-    }
 }
