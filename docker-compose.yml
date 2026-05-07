@@ -1,30 +1,25 @@
 version: '3.8'
 
 services:
-  # Serviço do Backend (sua aplicação Spring Boot)
   backend:
     build: .
     container_name: taggy-sustain-backend
     ports:
       - "8080:8080"
     environment:
-      # Aponta o host do MySQL para o serviço do banco de dados
       - MYSQL_HOST=mysql-db
     depends_on:
       - mysql-db
 
-  # Serviço do Banco de Dados (MySQL)
   mysql-db:
     image: mysql:8.0
     container_name: taggy-sustain-db
     ports:
-      # Alterado para 3307 no host, pois a porta 3306 já está em uso na sua máquina
       - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin123
       MYSQL_DATABASE: taggy_sustain
     volumes:
-      # Garante que os dados do banco persistam mesmo se o container for recriado
       - mysql-data:/var/lib/mysql
 
 volumes:
