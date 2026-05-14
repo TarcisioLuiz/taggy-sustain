@@ -51,8 +51,6 @@ public class CalculoImpactoService {
         } else {
             co2Evitado = 0.0; // Valor padrao caso o tipo de veiculo nao seja reconhecido
         }
-        // --- FIM DA NOVA REGRA DE NEGOCIO ---
-
         ImpactoResponseDTO response = new ImpactoResponseDTO();
         response.setGramasCo2Evitados(arredondar(gramasCo2Evitados, 2));
         response.setPercentualReducao(arredondar(percentualReducao, 2));
