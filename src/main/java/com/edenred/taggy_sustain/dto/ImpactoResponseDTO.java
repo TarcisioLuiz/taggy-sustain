@@ -7,4 +7,5 @@ public class ImpactoResponseDTO {
     private Double gramasCo2Evitados;
     private Double percentualReducao;
     private Double arvoresEquivalentes;
+    private Double co2Evitado; // Novo campo em kg
 }
