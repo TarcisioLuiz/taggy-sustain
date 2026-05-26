@@ -1,8 +1,8 @@
 package com.edenred.taggy_sustain.controller;
 
-import com.edenred.taggy_sustain.dto.ImpactoRequestDTO;
-import com.edenred.taggy_sustain.dto.ImpactoResponseDTO;
-import com.edenred.taggy_sustain.service.CalculoImpactoService;
+import com.edenred.taggy_sustain.dto.CalculoSimplificadoRequestDTO;
+import com.edenred.taggy_sustain.dto.CalculoSimplificadoResponseDTO;
+import com.edenred.taggy_sustain.service.CalculoSimplificadoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CalculoImpactoController {
 
     @Autowired
-    private CalculoImpactoService calculoImpactoService;
+    private CalculoSimplificadoService calculoSimplificadoService;
 
-    @PostMapping("/impacto")
-    public ResponseEntity<ImpactoResponseDTO> calcularImpacto(@RequestBody ImpactoRequestDTO request) {
-        ImpactoResponseDTO response = calculoImpactoService.calcularImpacto(request);
+    @PostMapping("/impacto-simplificado")
+    public ResponseEntity<CalculoSimplificadoResponseDTO> calcularImpactoSimplificado(@RequestBody CalculoSimplificadoRequestDTO request) {
+        CalculoSimplificadoResponseDTO response = calculoSimplificadoService.calcularImpactoSimplificado(request);
         return ResponseEntity.ok(response);
     }
 }
