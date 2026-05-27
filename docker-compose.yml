@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: taggy-sustain-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_HOST=mysql-db
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: taggy-sustain-db
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin123
+      MYSQL_DATABASE: taggy_sustain
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

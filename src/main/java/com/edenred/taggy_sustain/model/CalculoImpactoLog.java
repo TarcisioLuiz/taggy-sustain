@@ -23,6 +23,7 @@ public class CalculoImpactoLog {
     private Double gramasCo2Evitados;
     private Double percentualReducao;
     private Double arvoresEquivalentes;
+    private Double co2Evitado;
 
     private LocalDateTime dataCalculo;
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Service
 public class CalculoImpactoService {
@@ -41,10 +42,20 @@ public class CalculoImpactoService {
 
         double arvoresEquivalentes = totalCo2EvitadoKg / 22;
 
+        // --- INICIO DA NOVA REGRA DE NEGOCIO ---
+        double co2Evitado;
+        if ("leve".equalsIgnoreCase(request.getTipoVeiculo())) {
+            co2Evitado = request.getTotalPassagens() * 0.15;
+        } else if ("pesado".equalsIgnoreCase(request.getTipoVeiculo())) {
+            co2Evitado = request.getTotalPassagens() * 0.45;
+        } else {
+            co2Evitado = 0.0; // Valor padrao caso o tipo de veiculo nao seja reconhecido
+        }
         ImpactoResponseDTO response = new ImpactoResponseDTO();
         response.setGramasCo2Evitados(arredondar(gramasCo2Evitados, 2));
         response.setPercentualReducao(arredondar(percentualReducao, 2));
         response.setArvoresEquivalentes(arredondar(arvoresEquivalentes, 2));
+        response.setCo2Evitado(arredondar(co2Evitado, 2));
 
         salvarLog(request, response);
 
@@ -59,6 +70,7 @@ public class CalculoImpactoService {
         log.setGramasCo2Evitados(response.getGramasCo2Evitados());
         log.setPercentualReducao(response.getPercentualReducao());
         log.setArvoresEquivalentes(response.getArvoresEquivalentes());
+        log.setCo2Evitado(response.getCo2Evitado());
         log.setDataCalculo(LocalDateTime.now());
         repository.save(log);
     }
