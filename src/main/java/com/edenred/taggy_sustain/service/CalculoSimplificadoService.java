@@ -1,7 +1,7 @@
 package com.edenred.taggy_sustain.service;
 
-import com.edenred.taggy_sustain.dto.CalculoSimplificadoRequestDTO;
-import com.edenred.taggy_sustain.dto.CalculoSimplificadoResponseDTO;
+import com.edenred.taggy_sustain.dto.CalculoB2CRequest;
+import com.edenred.taggy_sustain.dto.CalculoB2CResponse;
 import com.edenred.taggy_sustain.model.CalculoImpactoLog;
 import com.edenred.taggy_sustain.model.FuelType;
 import com.edenred.taggy_sustain.repository.CalculoImpactoLogRepository;
@@ -36,7 +36,7 @@ public class CalculoSimplificadoService {
         this.repository = repository;
     }
 
-    public CalculoSimplificadoResponseDTO calcularImpactoSimplificado(CalculoSimplificadoRequestDTO request) {
+    public CalculoB2CResponse calcularImpactoSimplificado(CalculoB2CRequest request) {
         FuelEmissionStrategy strategy = resolveStrategy(request.getFuelType());
         BigDecimal emissionFactor = strategy.getEmissionFactor();
 
@@ -59,24 +59,23 @@ public class CalculoSimplificadoService {
 
         BigDecimal totalCo2EvitadoKg = co2EvitadoCombustivel.add(co2EvitadoPapel);
 
-        CalculoSimplificadoResponseDTO response = new CalculoSimplificadoResponseDTO();
+        CalculoB2CResponse response = new CalculoB2CResponse();
         response.setLitrosCombustivelEvitados(litrosCombustivelEvitados.setScale(2, RoundingMode.HALF_UP).doubleValue());
         response.setGramasCo2Evitados(totalCo2EvitadoKg.multiply(KG_TO_GRAMS).setScale(2, RoundingMode.HALF_UP).doubleValue());
         response.setGramasPapelEvitados(pesoTotalPapel.multiply(KG_TO_GRAMS).setScale(2, RoundingMode.HALF_UP).doubleValue());
         response.setArvoresEquivalentes(totalCo2EvitadoKg.divide(KG_CO2_PER_TREE_YEAR, 2, RoundingMode.HALF_UP).doubleValue());
 
-        salvarLog(request, response);
+        salvarLog(request, response, tempoTotalFila);
 
         return response;
     }
 
-    private void salvarLog(CalculoSimplificadoRequestDTO request, CalculoSimplificadoResponseDTO response) {
+    private void salvarLog(CalculoB2CRequest request, CalculoB2CResponse response, BigDecimal tempoTotalFila) {
         CalculoImpactoLog log = new CalculoImpactoLog();
-        log.setTipoVeiculo("N/A");
-        log.setTipoCombustivel(request.getFuelType().name());
-        log.setTotalPassagens(request.getTotalPassagensPedagio() + request.getTotalPassagensEstacionamento());
+        log.setEmailUsuario("calculo_simplificado@taggy.com"); //TODO: colocar email de usuário
         log.setGramasCo2Evitados(response.getGramasCo2Evitados());
-        log.setArvoresEquivalentes(response.getArvoresEquivalentes());
+        log.setGramasPapelEvitados(response.getGramasPapelEvitados());
+        log.setLitrosCombustivelEvitados(response.getLitrosCombustivelEvitados());
         log.setDataCalculo(LocalDateTime.now());
         repository.save(log);
     }

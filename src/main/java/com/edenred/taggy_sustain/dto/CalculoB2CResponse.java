@@ -3,8 +3,9 @@ package com.edenred.taggy_sustain.dto;
 import lombok.Data;
 
 @Data
-public class ImpactoResponseDTO {
+public class CalculoB2CResponse {
+    private Double litrosCombustivelEvitados;
     private Double gramasCo2Evitados;
-    private Double percentualReducao;
+    private Double gramasPapelEvitados;
     private Double arvoresEquivalentes;
 }

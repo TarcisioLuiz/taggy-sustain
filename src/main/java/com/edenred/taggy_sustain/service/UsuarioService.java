@@ -2,7 +2,7 @@ package com.edenred.taggy_sustain.service;
 
 import com.edenred.taggy_sustain.dto.LoginRequestDTO;
 import com.edenred.taggy_sustain.dto.LoginResponseDTO;
-import com.edenred.taggy_sustain.model.Usuario;
+import com.edenred.taggy_sustain.model.Pessoa;
 import com.edenred.taggy_sustain.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,18 +14,13 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public LoginResponseDTO login(LoginRequestDTO dto){
-        Usuario usuario = usuarioRepository.findByEmail(dto.getEmail())
+        Pessoa usuario = usuarioRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
         if (!usuario.getSenha().equals(dto.getSenha())){
             throw new RuntimeException("Senha inválida");
         }
 
-        String login = usuario.getLogin();
-
-        if(!login.equals("UsuarioCamila") && !login.equals("UsuarioHelena")) {
-            throw new RuntimeException("Login inválido");
-        }
-        return new LoginResponseDTO("Login realizado com sucesso");
+        return new LoginResponseDTO(usuario.getId().toString());
     }
 }

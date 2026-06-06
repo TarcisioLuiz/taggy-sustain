@@ -4,27 +4,23 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 @Data
 @Entity
-public class CalculoImpactoLog {
+public class Veiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String emailUsuario;
+    private String placa;
+    private String modelo;
+    private int ano;
 
-    private double gramasCo2Evitados;
-
-    private double gramasPapelEvitados;
-
-    private double litrosCombustivelEvitados;
-
-    private long tempoGanhoSegundos;
-
-    private LocalDateTime dataCalculo;
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id", nullable = false)
+    private Pessoa proprietario;
 }
