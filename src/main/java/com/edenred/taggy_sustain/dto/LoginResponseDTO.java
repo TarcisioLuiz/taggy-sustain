@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class LoginResponseDTO {
-    private String mensagem;
+    private String userId;
 
-    public LoginResponseDTO(String mensagem){
-        this.mensagem = mensagem;
+    public LoginResponseDTO(String id){
+        this.userId = id;
     }
 
 }
