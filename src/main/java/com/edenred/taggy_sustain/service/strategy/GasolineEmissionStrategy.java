@@ -5,11 +5,11 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-@Component("GASOLINE")
+@Component("GASOLINA")
 public class GasolineEmissionStrategy implements FuelEmissionStrategy {
 
     @Override
     public BigDecimal getEmissionFactor() {
-        return FuelType.GASOLINE.getEmissionFactor();
+        return FuelType.GASOLINA.getEmissionFactor();
     }
 }

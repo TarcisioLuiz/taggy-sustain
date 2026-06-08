@@ -1,30 +1,32 @@
 package com.edenred.taggy_sustain.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 @Entity
-public class CalculoImpactoLog {
+public class Pessoa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String emailUsuario;
+    private String nome;
 
-    private double gramasCo2Evitados;
+    @Column(unique = true)
+    private String email;
 
-    private double gramasPapelEvitados;
+    private int idade;
 
-    private double litrosCombustivelEvitados;
+    private String cpfCnpj;
 
-    private long tempoGanhoSegundos;
+    private String cep;
 
-    private LocalDateTime dataCalculo;
+    private String numero;
+
+    private String senha;
 }
