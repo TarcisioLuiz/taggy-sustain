@@ -1,5 +1,7 @@
-package com.edenred.taggy_sustain.dto;
+package com.edenred.taggy_sustain.dto.B2B;
 
+import com.edenred.taggy_sustain.dto.GanhosSustentabilidadeDTO;
+import com.edenred.taggy_sustain.dto.ResultadoCenarioDTO;
 import lombok.Builder;
 import lombok.Data;
 

@@ -16,9 +16,10 @@ public class Veiculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String placa;
     private String modelo;
+    private String marca;
     private int ano;
+    private String fuelType;
 
     @ManyToOne
     @JoinColumn(name = "pessoa_id", nullable = false)

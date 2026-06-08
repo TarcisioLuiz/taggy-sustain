@@ -1,6 +1,6 @@
 package com.edenred.taggy_sustain.controller;
 
-import com.edenred.taggy_sustain.dto.CalculoComparativoB2BResponse;
+import com.edenred.taggy_sustain.dto.B2B.CalculoComparativoB2BResponse;
 import com.edenred.taggy_sustain.service.CalculoB2BService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;

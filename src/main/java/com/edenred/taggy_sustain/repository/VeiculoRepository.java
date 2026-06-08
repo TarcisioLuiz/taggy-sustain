@@ -11,5 +11,5 @@ import java.util.Optional;
 @Repository
 public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
     List<Veiculo> findByProprietarioId(Long proprietarioId);
-    Optional<Veiculo> findByProprietarioAndPlaca(Pessoa proprietario, String placa);
+    Optional<Veiculo> findByProprietarioAndModelo(Pessoa proprietario, String modelo);
 }

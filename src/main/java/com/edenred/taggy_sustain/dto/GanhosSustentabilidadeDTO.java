@@ -10,4 +10,5 @@ public class GanhosSustentabilidadeDTO {
     private double litrosCombustivelEvitados;
     private double gramasPapelEvitados;
     private long tempoGanhoSegundos;
+    private Double arvoresEquivalentes;
 }

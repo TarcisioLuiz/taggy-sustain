@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Getter
 public enum FuelType {
-    GASOLINE(new BigDecimal("2.33")),
+    GASOLINA(new BigDecimal("2.33")),
     DIESEL(new BigDecimal("2.62"));
 
     private final BigDecimal emissionFactor;

@@ -65,15 +65,18 @@ public class DevSeedService {
     }
 
     private Veiculo upsertVeiculo(VeiculoSeedDTO veiculoDTO, Pessoa proprietario) {
-        return veiculoRepository.findByProprietarioAndPlaca(proprietario, veiculoDTO.getPlaca()).map(existingVeiculo -> {
+        return veiculoRepository.findByProprietarioAndModelo(proprietario, veiculoDTO.getModelo()).map(existingVeiculo -> {
             existingVeiculo.setModelo(veiculoDTO.getModelo());
             existingVeiculo.setAno(veiculoDTO.getAno());
+            existingVeiculo.setMarca(veiculoDTO.getMarca());
+            existingVeiculo.setFuelType(veiculoDTO.getFuelType());
             return veiculoRepository.save(existingVeiculo);
         }).orElseGet(() -> {
             Veiculo newVeiculo = new Veiculo();
-            newVeiculo.setPlaca(veiculoDTO.getPlaca());
             newVeiculo.setModelo(veiculoDTO.getModelo());
             newVeiculo.setAno(veiculoDTO.getAno());
+            newVeiculo.setMarca(veiculoDTO.getMarca());
+            newVeiculo.setFuelType(veiculoDTO.getFuelType());
             newVeiculo.setProprietario(proprietario);
             return veiculoRepository.save(newVeiculo);
         });
@@ -81,16 +84,14 @@ public class DevSeedService {
 
     private void upsertDadosCalculo(DadosCalculoSeedDTO dadosDTO, Veiculo veiculo) {
         dadosCalculoRepository.findByVeiculoAndMesReferencia(veiculo, dadosDTO.getMesReferencia()).map(existingDados -> {
-            existingDados.setKmRodados(dadosDTO.getKmRodados());
-            existingDados.setTipoCombustivel(dadosDTO.getTipoCombustivel());
-            existingDados.setConsumoMedio(dadosDTO.getConsumoMedio());
+            existingDados.setQtdPassagensEstacionamento(dadosDTO.getQtdPassagensEstacionamento());
+            existingDados.setQtdPassagensPedagio(dadosDTO.getQtdPassagensPedagio());
             return dadosCalculoRepository.save(existingDados);
         }).orElseGet(() -> {
             DadosCalculo newDados = new DadosCalculo();
-            newDados.setKmRodados(dadosDTO.getKmRodados());
-            newDados.setTipoCombustivel(dadosDTO.getTipoCombustivel());
-            newDados.setConsumoMedio(dadosDTO.getConsumoMedio());
             newDados.setMesReferencia(dadosDTO.getMesReferencia());
+            newDados.setQtdPassagensEstacionamento(dadosDTO.getQtdPassagensEstacionamento());
+            newDados.setQtdPassagensPedagio(dadosDTO.getQtdPassagensPedagio());
             newDados.setVeiculo(veiculo);
             return dadosCalculoRepository.save(newDados);
         });

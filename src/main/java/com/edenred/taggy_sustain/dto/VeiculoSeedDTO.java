@@ -5,8 +5,9 @@ import java.util.List;
 
 @Data
 public class VeiculoSeedDTO {
-    private String placa;
+    private String marca;
     private String modelo;
+    private String fuelType;
     private int ano;
     private List<DadosCalculoSeedDTO> dadosCalculo;
 }

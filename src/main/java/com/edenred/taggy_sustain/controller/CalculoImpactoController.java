@@ -19,7 +19,7 @@ public class CalculoImpactoController {
 
     @PostMapping("/impacto-simplificado")
     public ResponseEntity<CalculoB2CResponse> calcularImpactoSimplificado(@RequestBody CalculoB2CRequest request) {
-        CalculoB2CResponse response = calculoSimplificadoService.calcularImpactoSimplificado(request);
+        CalculoB2CResponse response = calculoSimplificadoService.calcularEmissoesMensaisB2C(request);
         return ResponseEntity.ok(response);
     }
 }

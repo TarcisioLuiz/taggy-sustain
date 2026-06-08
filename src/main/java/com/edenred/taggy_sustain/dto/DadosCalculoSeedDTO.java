@@ -5,8 +5,7 @@ import java.time.YearMonth;
 
 @Data
 public class DadosCalculoSeedDTO {
-    private double kmRodados;
-    private String tipoCombustivel;
-    private double consumoMedio;
     private YearMonth mesReferencia;
+    private Integer qtdPassagensEstacionamento;
+    private Integer qtdPassagensPedagio;
 }

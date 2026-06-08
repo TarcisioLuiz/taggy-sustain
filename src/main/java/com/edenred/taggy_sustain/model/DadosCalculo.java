@@ -18,12 +18,9 @@ public class DadosCalculo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double kmRodados;
-    private String tipoCombustivel;
-    private double consumoMedio;
     private YearMonth mesReferencia;
-    //TODO: Adicionar número de passagens pelo pedagio e estacionamento
-
+    private Integer qtdPassagensEstacionamento;
+    private Integer qtdPassagensPedagio;
     @ManyToOne
     @JoinColumn(name = "veiculo_id", nullable = false)
     private Veiculo veiculo;
