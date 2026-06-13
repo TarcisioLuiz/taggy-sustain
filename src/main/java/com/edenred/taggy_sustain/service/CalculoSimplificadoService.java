@@ -20,14 +20,14 @@ import java.util.Map;
 @Service
 public class CalculoSimplificadoService {
 
-    private static final BigDecimal TEMPO_FILA_PEDAGIO_SEM_TAGGY = new BigDecimal("10");
-    private static final BigDecimal TEMPO_FILA_PEDAGIO_COM_TAGGY = new BigDecimal("2");
-    private static final BigDecimal TEMPO_FILA_ESTACIONAMENTO_SEM_TAGGY = new BigDecimal("8");
-    private static final BigDecimal TEMPO_FILA_ESTACIONAMENTO_COM_TAGGY = new BigDecimal("1");
-    private static final BigDecimal CONSUMO_MARCHA_LENTA = new BigDecimal("0.8");
+    private static final BigDecimal TEMPO_FILA_PEDAGIO_SEM_TAGGY = new BigDecimal("20");
+    private static final BigDecimal TEMPO_FILA_PEDAGIO_COM_TAGGY = new BigDecimal("0");
+    private static final BigDecimal TEMPO_FILA_ESTACIONAMENTO_SEM_TAGGY = new BigDecimal("10");
+    private static final BigDecimal TEMPO_FILA_ESTACIONAMENTO_COM_TAGGY = new BigDecimal("0");
+    private static final BigDecimal CONSUMO_MARCHA_LENTA = new BigDecimal("2.0");
     private static final BigDecimal CONSUMO_ADICIONAL_ACELERACAO = new BigDecimal("0.015");
     private static final BigDecimal PESO_TICKET = new BigDecimal("0.002");
-    private static final BigDecimal FATOR_EMISSAO_PAPEL = new BigDecimal("1.2");
+    private static final BigDecimal FATOR_EMISSAO_PAPEL = new BigDecimal("1.05");
     private static final BigDecimal MINUTES_IN_HOUR = new BigDecimal("60");
     private static final BigDecimal KG_TO_GRAMS = new BigDecimal("1000");
     private static final BigDecimal KG_CO2_PER_TREE_YEAR = new BigDecimal("22");
